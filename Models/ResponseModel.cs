@@ -1,4 +1,4 @@
-namespace virustotal_desktop_test.Models;
+namespace virustotal_desktop.Models;
 
 /// <summary>
 /// Represents the top-level file response which contains the data object.

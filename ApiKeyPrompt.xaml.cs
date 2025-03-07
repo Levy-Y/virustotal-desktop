@@ -1,8 +1,8 @@
 using System.Windows;
 
-using static virustotal_desktop_test.Utils.Utilities;
+using static virustotal_desktop.Utils.Utilities;
 
-namespace virustotal_desktop_test;
+namespace virustotal_desktop;
 
 public partial class ApiKeyPrompt : Window
 {

@@ -4,9 +4,9 @@ using System.Text;
 using System.Text.Json;
 using System.Windows;
 using RestSharp;
-using virustotal_desktop_test.Models;
+using virustotal_desktop.Models;
 
-namespace virustotal_desktop_test.Utils;
+namespace virustotal_desktop.Utils;
 
 using Newtonsoft.Json;
 

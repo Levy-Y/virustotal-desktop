@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using virustotal_desktop_test.Models;
-using static virustotal_desktop_test.Utils.Utilities;
+using virustotal_desktop.Models;
+using static virustotal_desktop.Utils.Utilities;
 
-namespace virustotal_desktop_test;
+namespace virustotal_desktop;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

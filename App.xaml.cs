@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace virustotal_desktop_test;
+namespace virustotal_desktop;
 
 /// <summary>
 /// Interaction logic for App.xaml
