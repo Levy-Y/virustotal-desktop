@@ -1,0 +1,63 @@
+﻿<Window x:Class="virustotal_desktop_test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:virustotal_desktop_test"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Icon="pack://application:,,,/Resources/Icon/logo.png"
+        Title="VirusTotal Desktop" Height="350" Width="300">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Settings">
+                    <MenuItem Header="_Api Key">
+                        <MenuItem Header="_Edit" Click="EditApiKeyOnClick" />
+                        <MenuItem Header="_Show" Click="ShowApiKeyOnClick" />
+                        <MenuItem Header="_Delete" Click="DeleteApiKeyOnClick" />
+                    </MenuItem>
+                    <MenuItem Header="_Clear History" ToolTip="Clear Scan History" Click="ClearHistoryOnClick" />
+                    <MenuItem Header="_Logs" ToolTip="Open Log File" />
+                </MenuItem>
+                <MenuItem Header="_About" ToolTip="Misc information about the application">
+                    <MenuItem Header="_Credit"/>
+                    <MenuItem Header="_Copyright"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+            <TabControl SelectionChanged="OnSelectionChanged" x:Name="MainTabControl">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Upload</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                        <Label FontSize="20" HorizontalAlignment="Center">File Selector</Label>
+                        <Border BorderBrush="Black" BorderThickness="0.2" CornerRadius="3">
+                            <StackPanel Height="120" x:Name="SelectedFileAttributes">
+                                <!-- Content added dynamically -->
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Button FontSize="15" Padding="10" Margin="0, 10, 2, 0" BorderThickness="0.2" Click="SelecFileOnClick">Select File</Button>
+                            <Button FontSize="15" Padding="10" Margin="2, 10, 0, 0" BorderThickness="0.2" Click="ClearSelectionOnClick">Clear Selection</Button>
+                        </StackPanel>
+                        <Button FontSize="15" Padding="10" Margin="0, 4, 0, 0" BorderThickness="0.2" Click="UploadFileOnClick">Upload For Scan</Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="History">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Padding="5">
+                        <Grid x:Name="ScanHistory">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+    </Grid>
+</Window>
