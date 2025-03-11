@@ -23,6 +23,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Resource Include=".github\images\logo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Resources\Icon\logo.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
