@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace virustotal_desktop.Models;
 
 /// <summary>

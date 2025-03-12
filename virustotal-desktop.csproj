@@ -11,6 +11,8 @@
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+        <AssemblyName>VirusTotal-Desktop</AssemblyName>
+        <ApplicationIcon>Resources\Icon\logo.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,6 +22,10 @@
 
     <ItemGroup>
       <None Remove="Resources\Icon\logo.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Resources\Icon\logo.ico" />
     </ItemGroup>
 
     <ItemGroup>

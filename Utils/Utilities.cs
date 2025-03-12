@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows;
 using RestSharp;
 using virustotal_desktop.Models;

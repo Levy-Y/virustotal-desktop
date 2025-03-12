@@ -18,11 +18,9 @@
                         <MenuItem Header="_Delete" Click="DeleteApiKeyOnClick" />
                     </MenuItem>
                     <MenuItem Header="_Clear History" ToolTip="Clear Scan History" Click="ClearHistoryOnClick" />
-                    <MenuItem Header="_Logs" ToolTip="Open Log File" />
                 </MenuItem>
                 <MenuItem Header="_About" ToolTip="Misc information about the application">
-                    <MenuItem Header="_Credit"/>
-                    <MenuItem Header="_Copyright"/>
+                    <MenuItem Header="_Legal" Click="OpenCreditsOnClick" />
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>

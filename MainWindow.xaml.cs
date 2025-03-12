@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using virustotal_desktop.Models;
 using static virustotal_desktop.Utils.Utilities;
@@ -263,5 +265,11 @@ public partial class MainWindow : Window
         MainTabControl.SelectedIndex = 0;
         MessageBox.Show("Successfully cleared scan history!", "Success!", MessageBoxButton.OK,
             MessageBoxImage.Information, MessageBoxResult.Yes);
+    }
+
+    private void OpenCreditsOnClick(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show("This application is an independent third-party client for VirusTotal and is not affiliated with, endorsed by, or sponsored by VirusTotal or its parent company. All trademarks, service marks, and logos associated with VirusTotal are the property of their respective owners.\n\nThis software is provided \"as is\" without any warranties, express or implied. The developer of this application assumes no responsibility for the accuracy, legality, or reliability of the VirusTotal services used through this client.\n\nFor official VirusTotal services, please visit https://www.virustotal.com\n\n", "Notice", MessageBoxButton.OK, MessageBoxImage.Exclamation,
+            MessageBoxResult.OK);
     }
 }
