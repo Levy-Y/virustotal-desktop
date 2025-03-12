@@ -1,6 +1,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![project_license][license-shield]][license-url]
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/levy-y/virustotal-desktop/deploy-app.yml?style=for-the-badge)
+
 
 <!-- PROJECT LOGO -->
 <br />
@@ -28,9 +30,10 @@ VirusTotal Desktop allows users to easily check files for viruses and malware us
 
 
 
-### Built With
-
+### Technologies used
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
+![Powershell](https://img.shields.io/badge/powershell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
+![Github Actions](https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -56,8 +59,8 @@ Ensure you have the following installed on your system before proceeding:
 ### Installation (From Releases)
 
 1. Go to the [Releases](https://github.com/levy-y/virustotal-desktop/releases) section of the repository.
-2. Download `virustotal-desktop.exe` from the latest release.
-3. Run `virustotal-desktop.exe`.
+2. Download `VirusTotal-Desktop.exe` from the latest release.
+3. Run `VirusTotal-Desktop.exe`.
 
 ---
 
@@ -72,10 +75,10 @@ cd virustotal-desktop
 2. Build the project:
 
 ```sh
-dotnet build --configuration Release
+.\build.ps1 build
 ```
 
-3. Run the `virustotal-desktop.exe` in the `\bin\Release\net8.0-windows\win-x64` folder
+3. Run the `VirusTotal-Desktop.exe` in the `\bin\Release\net8.0-windows\win-x64\publish` folder
 
 ### API Key Setup
 To use the VirusTotal API, you need to set up your API key.

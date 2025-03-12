@@ -179,23 +179,23 @@ public partial class MainWindow : Window
             var rowIndex = 0;
 
             var scanHistory = GetScanHistory();
-            
+
             if (scanHistory.Count.Equals(0))
             {
                 ScanHistory.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                
+
                 var label = new Label()
                 {
                     Content = "No previous scans to show.", Height = 35, Margin = new Thickness(0, 2, 0, 2),
                     VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center,
                 };
-                
+
                 Grid.SetRow(label, rowIndex);
                 Grid.SetColumnSpan(label, 2);
 
                 ScanHistory.Children.Add(label);
             }
-            
+
             scanHistory.ForEach(id =>
             {
                 ScanHistory.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -269,7 +269,9 @@ public partial class MainWindow : Window
 
     private void OpenCreditsOnClick(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("This application is an independent third-party client for VirusTotal and is not affiliated with, endorsed by, or sponsored by VirusTotal or its parent company. All trademarks, service marks, and logos associated with VirusTotal are the property of their respective owners.\n\nThis software is provided \"as is\" without any warranties, express or implied. The developer of this application assumes no responsibility for the accuracy, legality, or reliability of the VirusTotal services used through this client.\n\nFor official VirusTotal services, please visit https://www.virustotal.com\n\n", "Notice", MessageBoxButton.OK, MessageBoxImage.Exclamation,
+        MessageBox.Show(
+            "This application is an independent third-party client for VirusTotal and is not affiliated with, endorsed by, or sponsored by VirusTotal or its parent company. All trademarks, service marks, and logos associated with VirusTotal are the property of their respective owners.\n\nThis software is provided \"as is\" without any warranties, express or implied. The developer of this application assumes no responsibility for the accuracy, legality, or reliability of the VirusTotal services used through this client.\n\nFor official VirusTotal services, please visit https://www.virustotal.com\n\n",
+            "Notice", MessageBoxButton.OK, MessageBoxImage.Exclamation,
             MessageBoxResult.OK);
     }
 }
