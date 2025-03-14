@@ -15,11 +15,29 @@ public partial class MainWindow : Window
     /// <summary>
     /// Gets or sets the path of the selected file.
     /// </summary>
-    public string SelectedFile { get; set; } = "";
+    private string SelectedFile { get; set; } = "";
 
     /// <summary>
-    /// Opens a file selection dialog, allows the user to select a file, and displays its attributes (name, extension, and size).
-    /// If the user confirms the file, the attributes are shown; if canceled or no file is selected, no action is taken.
+    /// Initializes a new instance of the MainWindow class and sets the window's height and width relative to the screen size.
+    /// </summary>
+    public MainWindow()
+    {
+        InitializeComponent();
+        Height = (SystemParameters.PrimaryScreenHeight * 0.25);
+        Width = (SystemParameters.PrimaryScreenWidth * 0.12);
+    }
+    
+    public MainWindow(string filePath): this()
+    {
+        if (!string.IsNullOrEmpty(filePath))
+        {
+            InsertOpenedFileAttributes(filePath);
+        }
+    }
+    
+    /// <summary>
+    /// Opens a file selection dialog, allows the user to select a file.
+    /// If the user confirms the file, the InsertOpenedFileAttributes method is called with the file's path as an argument; if canceled or no file is selected, no action is taken.
     /// </summary>
     private void OpenFile()
     {
@@ -29,10 +47,9 @@ public partial class MainWindow : Window
         dialog.Filter = "Any files (*.*)|*.*";
 
         bool? result = dialog.ShowDialog();
-
+        
         if (result != true) return;
         string filename = dialog.FileName;
-        SelectedFile = filename;
 
         MessageBoxResult msgBox = MessageBox.Show($"File opened: \n {filename} \n Is it alright?", "Opened file",
             MessageBoxButton.YesNoCancel, MessageBoxImage.None, MessageBoxResult.Yes);
@@ -40,17 +57,7 @@ public partial class MainWindow : Window
         switch (msgBox)
         {
             case MessageBoxResult.Yes:
-                UIElement[] attributes =
-                [
-                    new Label() { Content = $"Name: {new System.IO.FileInfo(dialog.FileName).Name}" },
-                    new Label()
-                    {
-                        Content = $"Extension: {new System.IO.FileInfo(dialog.FileName).Extension.Trim('.')}"
-                    },
-                    new Label() { Content = $"Size: {(new System.IO.FileInfo(dialog.FileName).Length) / 1024} KB" },
-                ];
-
-                attributes.ToList().ForEach(element => SelectedFileAttributes.Children.Add(element));
+                InsertOpenedFileAttributes(filename);
                 break;
             case MessageBoxResult.No:
                 OpenFile();
@@ -61,13 +68,23 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Initializes a new instance of the MainWindow class and sets the window's height and width relative to the screen size.
+    /// Takes the absolute path of a file as a string, and displays its attributes (name, extension, and size).
     /// </summary>
-    public MainWindow()
+    /// <param name="filePath">Absolute path of the file</param>
+    private void InsertOpenedFileAttributes(string filePath)
     {
-        InitializeComponent();
-        Height = (SystemParameters.PrimaryScreenHeight * 0.25);
-        Width = (SystemParameters.PrimaryScreenWidth * 0.12);
+        SelectedFile = filePath;
+        UIElement[] attributes =
+        [
+            new Label() { Content = $"Name: {new System.IO.FileInfo(filePath).Name}" },
+            new Label()
+            {
+                Content = $"Extension: {new System.IO.FileInfo(filePath).Extension.Trim('.')}"
+            },
+            new Label() { Content = $"Size: {(new System.IO.FileInfo(filePath).Length) / 1024} KB" },
+        ];
+
+        attributes.ToList().ForEach(element => SelectedFileAttributes.Children.Add(element));
     }
 
     /// <summary>
@@ -235,7 +252,7 @@ public partial class MainWindow : Window
     /// <param name="sender">The object that raised the event (typically the dynamic button).</param>
     /// <param name="e">The event data associated with the button click event.</param>
     /// <param name="id">The unique identifier of the file whose scan results are to be retrieved.</param>
-    private async void DynamicButtonOnClick(object sender, RoutedEventArgs e, string id)
+    private static async void DynamicButtonOnClick(object sender, RoutedEventArgs e, string id)
     {
         FileResponse stats = await GetScanResults(GetApiKey(), id);
 

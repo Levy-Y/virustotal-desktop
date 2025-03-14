@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "virustotal-desktop", "virustotal-desktop.csproj", "{2BE6730B-1D40-416E-BA88-8C77FB5C6D62}"
 EndProject
 Global
@@ -12,5 +15,11 @@ Global
 		{2BE6730B-1D40-416E-BA88-8C77FB5C6D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BE6730B-1D40-416E-BA88-8C77FB5C6D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BE6730B-1D40-416E-BA88-8C77FB5C6D62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9E1B5FB-B084-47EF-BA1F-B5EDA72F5863}
 	EndGlobalSection
 EndGlobal
