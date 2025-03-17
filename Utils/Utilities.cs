@@ -143,6 +143,51 @@ public class Utilities
         }
         return false;
     }
+
+    /// <summary>
+    /// Uploads a file larger than 32MB (32,768 KB) to the VirusTotal API for analysis using the provided API key.
+    /// First, it retrieves the upload URL from the VirusTotal API, then uploads the file to that URL.
+    /// </summary>
+    /// <param name="apiKey">The API key used for authentication with VirusTotal.</param>
+    /// <param name="filePath">The path to the file to upload.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result is true if the file was successfully uploaded and a valid ID is received, otherwise false.</returns>
+    public static async Task<bool> UploadLargeFile(string apiKey, string filePath)
+    {
+        var largeFileOptions = new RestClientOptions("https://www.virustotal.com/api/v3/files/upload_url");
+        var largeFileClient = new RestClient(largeFileOptions);
+        var largeFileUrlRequest = new RestRequest("");
+        largeFileUrlRequest.AddHeader("accept", "application/json");
+        largeFileUrlRequest.AddHeader("x-apikey", apiKey);
+        var largeFileUrlResponse = await largeFileClient.GetAsync(largeFileUrlRequest);
+    
+        using JsonDocument largeFileDoc = JsonDocument.Parse(largeFileUrlResponse.Content);
+        var largeFileUrl = largeFileDoc.RootElement.GetProperty("data").GetString();
+
+        if (string.IsNullOrEmpty(largeFileUrl))
+        {
+            return false;
+        }
+
+        var client = new RestClient(new RestClientOptions(largeFileUrl));
+    
+        var request = new RestRequest("")
+        {
+            AlwaysMultipartFormData = true
+        };
+    
+        request.AddHeader("accept", "application/json");
+        request.AddHeader("x-apikey", apiKey);
+        request.FormBoundary = "---011000010111000001101001";
+        request.AddFile("file", filePath);
+    
+        var response = await client.PostAsync(request);
+
+        using JsonDocument doc = JsonDocument.Parse(response.Content);
+        var id = doc.RootElement.GetProperty("data").GetProperty("id").GetString();
+
+        return !string.IsNullOrEmpty(id);
+    }
+
     
     /// <summary>
     /// Retrieves the scan results for a file from VirusTotal based on its SHA-256 hash.
@@ -159,8 +204,15 @@ public class Utilities
         request.AddHeader("x-apikey", apiKey);
         
         var response = await client.GetAsync(request);
-        FileResponse lastAnalysisResults = JsonConvert.DeserializeObject<FileResponse>(response.Content);
-        
-        return lastAnalysisResults;
+
+        try
+        {
+            FileResponse lastAnalysisResults = JsonConvert.DeserializeObject<FileResponse>(response.Content);
+            return lastAnalysisResults;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 }

@@ -162,7 +162,16 @@ public partial class MainWindow : Window
         }
         else
         {
-            var success = await UploadFile(apiKey, SelectedFile);
+            bool success;
+            
+            if (new System.IO.FileInfo(SelectedFile).Length >= 32000)
+            {
+                success = await UploadLargeFile(apiKey, SelectedFile);
+            }
+            else
+            {
+                success = await UploadFile(apiKey, SelectedFile);
+            };
 
             if (success)
             {
